@@ -98,6 +98,7 @@ endif
 set number
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 nnoremap <silent> <F3> :TlistToggle<CR>
+nnoremap <silent> <F4> :ts<CR>
 set modeline
 set background=dark
 

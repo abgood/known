@@ -23,8 +23,8 @@ set backspace=indent,eol,start
 
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
-else
-  set backup		" keep a backup file
+"else
+"  set backup		" keep a backup file
 endif
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
@@ -98,10 +98,13 @@ endif
 set number
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 nnoremap <silent> <F3> :TlistToggle<CR>
-nnoremap <silent> <F4> :ts<CR>
+nnoremap <silent> <F4> :WMToggle<CR>
+" nnoremap <silent> <F4> :ts<CR>
+" nnoremap <F5> :make<CR>
+" nnoremap <F6> :make clean<CR>
+
 set modeline
 set background=dark
-
 set expandtab
 set tabstop=4  
 set shiftwidth=4  
@@ -141,3 +144,6 @@ set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \
 let Tlist_Show_One_File = 1
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_Right_Window = 1
+let g:winManagerWindowLayout='FileExplorer'
+" let g:winManagerWindowLayout='FileExplorer|TagList'
+" cd /root/code/tsar

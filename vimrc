@@ -98,13 +98,10 @@ endif
 set number
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 nnoremap <silent> <F3> :TlistToggle<CR>
-nnoremap <silent> <F4> :WMToggle<CR>
-" nnoremap <silent> <F4> :ts<CR>
-" nnoremap <F5> :make<CR>
-" nnoremap <F6> :make clean<CR>
-
+nnoremap <silent> <F4> :ts<CR>
 set modeline
 set background=dark
+
 set expandtab
 set tabstop=4  
 set shiftwidth=4  
@@ -144,6 +141,33 @@ set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \
 let Tlist_Show_One_File = 1
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_Right_Window = 1
-let g:winManagerWindowLayout='FileExplorer'
-" let g:winManagerWindowLayout='FileExplorer|TagList'
-" cd /root/code/tsar
+
+
+"""""""""""""""""""""
+" python
+"""""""""""""""""""""
+filetype plugin on
+let g:pydiction_location = '~/.vim/plugin/complete-dict'
+""defalut g:pydiction_menu_height == 15
+let g:pydiction_menu_height = 20
+
+
+"""""""""""""""""""""
+" C++
+"""""""""""""""""""""
+"ctags -R --c++-kinds=+p --fields=+iaS --extra=+q /usr/include/c++/4.1.2/
+set tags+=~/.vim/tags/tags
+
+map <C-F12> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+
+let OmniCpp_NamespaceSearch = 1
+let OmniCpp_GlobalScopeSearch = 1
+let OmniCpp_ShowAccess = 1
+let OmniCpp_ShowPrototypeInAbbr = 1
+let OmniCpp_MayCompleteDot = 1
+let OmniCpp_MayCompleteArrow = 1
+let OmniCpp_MayCompleteScope = 1
+let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+
+au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+set completeopt=menuone,menu,longest,preview

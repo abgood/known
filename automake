@@ -19,6 +19,7 @@ automake learn
 1. ./configure
 2. make
 3. make install
+4. make dist    //打包发布
 
 #====工程相关文件示例====#
 configure.in

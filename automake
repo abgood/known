@@ -8,6 +8,7 @@ automake learn
 5. autoconf
 6. touch Makefile.am
 7. automake
+8. automake --add-missing
 
 #====重新生成工程方法(Makefile.am 文件有修改)====#
 1. make distclean

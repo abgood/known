@@ -98,7 +98,7 @@ endif
 set number
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 nnoremap <silent> <F3> :TlistToggle<CR>
-nnoremap <silent> <F4> :ts<CR>
+" nnoremap <silent> <F4> :ts<CR> in vim type :ts <command>
 set modeline
 set background=dark
 
@@ -118,6 +118,7 @@ set showmatch
 set si
 set ai
 set autoread
+set fdm=syntax
 
 inoremap ( ()<ESC>i
 inoremap [ []<ESC>i
@@ -155,19 +156,19 @@ let g:pydiction_menu_height = 20
 """""""""""""""""""""
 " C++
 """""""""""""""""""""
-"ctags -R --c++-kinds=+p --fields=+iaS --extra=+q /usr/include/c++/4.1.2/
-set tags+=~/.vim/tags/tags
-
-map <C-F12> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-
-let OmniCpp_NamespaceSearch = 1
-let OmniCpp_GlobalScopeSearch = 1
-let OmniCpp_ShowAccess = 1
-let OmniCpp_ShowPrototypeInAbbr = 1
-let OmniCpp_MayCompleteDot = 1
-let OmniCpp_MayCompleteArrow = 1
-let OmniCpp_MayCompleteScope = 1
-let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-
-au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-set completeopt=menuone,menu,longest,preview
+" http://vim.wikia.com/wiki/C++_code_completion
+" ctags -R --c++-kinds=+p --fields=+iaS --extra=+q /usr/include/c++/4.1.2/
+" map <C-F12> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+" set tags+=~/.vim/tags/tags
+" 
+" let OmniCpp_NamespaceSearch = 1
+" let OmniCpp_GlobalScopeSearch = 1
+" let OmniCpp_ShowAccess = 1
+" let OmniCpp_ShowPrototypeInAbbr = 1
+" let OmniCpp_MayCompleteDot = 1
+" let OmniCpp_MayCompleteArrow = 1
+" let OmniCpp_MayCompleteScope = 1
+" let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+" 
+" au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+" set completeopt=menuone,menu,longest,preview

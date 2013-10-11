@@ -123,6 +123,8 @@ set tags=tags;
 set autochdir
 " 拷贝过来的代码对齐
 " gg=G (command mode)
+" 自动缩进当前行
+" ==
 
 inoremap ( ()<ESC>i
 inoremap [ []<ESC>i

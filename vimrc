@@ -121,6 +121,8 @@ set autoread
 set fdm=syntax
 set tags=tags;
 set autochdir
+" 拷贝过来的代码对齐
+" gg=G (command mode)
 
 inoremap ( ()<ESC>i
 inoremap [ []<ESC>i

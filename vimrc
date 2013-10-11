@@ -119,6 +119,8 @@ set si
 set ai
 set autoread
 set fdm=syntax
+set tags=tags;
+set autochdir
 
 inoremap ( ()<ESC>i
 inoremap [ []<ESC>i

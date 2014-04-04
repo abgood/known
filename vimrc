@@ -99,10 +99,7 @@ set number
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 nnoremap <silent> <F3> :TlistToggle<CR>
 " nnoremap <silent> <F4> :ts<CR> in vim type :ts <command>
-<<<<<<< HEAD
 " nnoremap <silent> <F4> :set fdm=syntax<CR>
-=======
->>>>>>> 0c36b4a8ab8f4ad8e1f10d1c19f0e38a9df29b63
 set modeline
 set background=dark
 
@@ -127,7 +124,6 @@ set tags=tags;
 set autochdir
 " 拷贝过来的代码对齐
 " gg=G (command mode)
-<<<<<<< HEAD
 
 "inoremap ( ()<ESC>i
 "inoremap [ []<ESC>i
@@ -135,17 +131,6 @@ set autochdir
 "inoremap < <><ESC>i
 "inoremap " ""<ESC>i
 "inoremap ' ''<ESC>i
-=======
-" 自动缩进当前行
-" ==
-
-inoremap ( ()<ESC>i
-inoremap [ []<ESC>i
-inoremap { {}<ESC>i
-inoremap < <><ESC>i
-inoremap " ""<ESC>i
-inoremap ' ''<ESC>i
->>>>>>> 0c36b4a8ab8f4ad8e1f10d1c19f0e38a9df29b63
 
 highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
 

@@ -1,0 +1,79 @@
+automake learn
+
+#==== 生成工程的方法====#
+1. autoscan
+2. mv configure.scan configure.in
+3. aclocal
+4. autoheader
+5. autoconf
+6. touch Makefile.am
+7. automake
+8. automake --add-missing
+
+#====重新生成工程方法(Makefile.am 文件有修改)====#
+1. make distclean
+2. autoconf
+3. automake
+
+#====编译工程方法====#
+1. ./configure
+2. make
+3. make install
+4. make dist    //打包发布
+
+#====工程相关文件示例====#
+configure.in
+
+        #                                               -*- Autoconf -*-
+        # Process this file with autoconf to produce a configure script.
+        
+        AC_PREREQ(2.59)
+        # AC_INIT(FULL-PACKAGE-NAME, VERSION, BUG-REPORT-ADDRESS)
+        AC_INIT(sqgo, 1.0, abgood@sina.com)
+        AM_INIT_AUTOMAKE(sqgo, 1.0)
+        AC_CONFIG_SRCDIR([verify.h])
+        AC_CONFIG_HEADER([config.h])
+        
+        # Checks for programs.
+        AC_PROG_AWK
+        AC_PROG_CC
+        
+        # Checks for libraries.
+        # FIXME: Replace `main' with a function in `-lncurses':
+        AC_CHECK_LIB([ncurses], [main])
+        # FIXME: Replace `main' with a function in `-lpcre':
+        AC_CHECK_LIB([pcre], [main])
+        # FIXME: Replace `main' with a function in `-lreadline':
+        AC_CHECK_LIB([readline], [main])
+        # FIXME: Replace `main' with a function in `-lssh':
+        AC_CHECK_LIB([ssh], [main])
+        # FIXME: Replace `main' with a function in `-lssl':
+        AC_CHECK_LIB([ssl], [main])
+        
+        # Checks for header files.
+        AC_HEADER_STDC
+        AC_CHECK_HEADERS([fcntl.h stdlib.h string.h sys/ioctl.h sys/socket.h sys/time.h termios.h unistd.h])
+        
+        # Checks for typedefs, structures, and compiler characteristics.
+        AC_C_CONST
+        AC_HEADER_TIME
+        
+        # Checks for library functions.
+        AC_FUNC_ERROR_AT_LINE
+        AC_PROG_GCC_TRADITIONAL
+        AC_FUNC_MALLOC
+        AC_FUNC_SELECT_ARGTYPES
+        AC_TYPE_SIGNAL
+        AC_CHECK_FUNCS([getpass memset select strcasecmp strerror strncasecmp strstr])
+        
+        AC_CONFIG_FILES([Makefile])
+        AC_OUTPUT
+
+
+
+Makefile.am (此文件要手动创建)
+
+        AUTOMAKE_OPTIONS = foreign
+        bin_PROGRAMS = sqgo
+        sqgo_SOURCES = aes_code.c authentication.c conn.c display.c get.c knownhosts.c loop.c quiry.c sqgo.c ssh.c verify.c aes_code.h define.h display.h get.h quiry.h sqgo.h ssh.h verify.h
+        LIBS += `mysql_config --libs` -lssl -lreadline -lncurses -lpcre -lssh

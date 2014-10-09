@@ -96,6 +96,7 @@ if !exists(":DiffOrig")
 endif
 
 set number
+set pastetoggle=<F10>
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 nnoremap <silent> <F3> :TlistToggle<CR>
 " nnoremap <silent> <F4> :ts<CR> in vim type :ts <command>
@@ -148,7 +149,8 @@ let Tlist_Show_One_File = 1
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_Right_Window = 1
 let Tlist_Show_Menu = 1
-let Tlist_Auto_Open = 1
+" let Tlist_Auto_Open = 1
+let Tlist_Sort_Type = "name" 
 
 
 """""""""""""""""""""

@@ -3,12 +3,12 @@
 cmd=$(which tmux)" -2" # tmux path
 session="0"   # session name
 
-if [ -z $cmd ]; then
+if [ -z "$cmd" ]; then
   echo "You need to install tmux."
   exit 1
 fi
 
-$cmd has -t $session
+$cmd has -t $session &> /dev/null
 
 if [ $? != 0 ]; then
   $cmd new -d -s $session

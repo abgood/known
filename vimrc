@@ -85,10 +85,48 @@ set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \
 "######################
 "##### winmanager #####
 "######################
-let g:winManagerWindowLayout='FileExplorer'
+let g:winManagerWindowLayout='NERDTree'
 let g:winManagerWidth = 40
+let g:AutoOpenWinManager = 0
 nmap <silent> <F4> :WMToggle<CR>
 " let g:winManagerWindowLayout='FileExplorer|TagList'
+" let g:winManagerWindowLayout='FileExplorer'
+
+
+
+"######################
+"###### NERDTree ######
+"######################
+let g:NERDTree_title="[NERDTree]"  
+function! NERDTree_Start()  
+    exec 'NERDTree'  
+endfunction  
+function! NERDTree_IsValid()  
+    return 1  
+endfunction  
+
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" 设置NERDTree替换winmanager
+" 修改winmanager.vim
+" toggle showing the explorer plugins.
+"
+" wincmd H 替换为 wincmd L
+"
+" function! <SID>ToggleWindowsManager()
+"     if IsWinManagerVisible()
+"         call s:CloseWindowsManager()
+"     else
+"         call s:StartWindowsManager()
+"         以下2行为新增
+"         exe '1wincmd w'
+"         exe 'q'
+"     end
+" endfunction
+" 
+" 以下3行为新增
+" if g:AutoOpenWinManager 
+"     autocmd VimEnter * nested call s:ToggleWindowsManager()|1wincmd w|q
+" endif
 
 
 
@@ -123,26 +161,26 @@ let g:pydiction_location = 'D:\install\Vim\vimfiles\plugin\complete-dict'
 let g:pydiction_menu_height = 20
 
 function! AutoLoadCTagsAndCScope()
-   let max = 5
-   let dir = './'
-   let i = 0
-   let break = 0
-   while isdirectory(dir) && i < max
-       if filereadable(dir . 'cscope.out') 
-           execute 'cs add ' . dir . 'cscope.out'
-           let break = 1
-       endif
-       if filereadable(dir . 'tags')
-           execute 'set tags =' . dir . 'tags'
-           let break = 1
-       endif
-       if break == 1
-           execute 'lcd ' . dir
-           break
-       endif
-       let dir = dir . '../'
-       let i = i + 1
-   endwhile
+    let max = 5
+    let dir = './'
+    let i = 0
+    let break = 0
+    while isdirectory(dir) && i < max
+        if filereadable(dir . 'cscope.out') 
+            execute 'cs add ' . dir . 'cscope.out'
+            let break = 1
+        endif
+        if filereadable(dir . 'tags')
+            execute 'set tags =' . dir . 'tags'
+            let break = 1
+        endif
+        if break == 1
+            execute 'lcd ' . dir
+            break
+        endif
+        let dir = dir . '../'
+        let i = i + 1
+    endwhile
 endf
 nmap <F7> :call AutoLoadCTagsAndCScope()<CR>
 

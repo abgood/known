@@ -5,27 +5,27 @@ behave mswin
 
 set diffexpr=MyDiff()
 function MyDiff()
-    let opt = '-a --binary '
-    if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-    if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-    let arg1 = v:fname_in
-    if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-    let arg2 = v:fname_new
-    if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-    let arg3 = v:fname_out
-    if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-    let eq = ''
-    if $VIMRUNTIME =~ ' '
-    if &sh =~ '\<cmd'
-        let cmd = '""' . $VIMRUNTIME . '\diff"'
-        let eq = '"'
-    else
-        let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-    endif
-    else
-        let cmd = $VIMRUNTIME . '\diff'
-    endif
-    silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+	let opt = '-a --binary '
+	if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+	if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+	let arg1 = v:fname_in
+	if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+	let arg2 = v:fname_new
+	if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+	let arg3 = v:fname_out
+	if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+	let eq = ''
+	if $VIMRUNTIME =~ ' '
+	if &sh =~ '\<cmd'
+		let cmd = '""' . $VIMRUNTIME . '\diff"'
+		let eq = '"'
+	else
+		let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+	endif
+	else
+		let cmd = $VIMRUNTIME . '\diff'
+	endif
+	silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
 
 
@@ -45,11 +45,10 @@ set showmatch
 set autoread
 set wildmenu 
 set smarttab
-set noexpandtab
 set autochdir
+set noexpandtab
 set background=dark
 set tabstop=4  
-set shiftwidth=4  
 set shiftwidth=4  
 set wildmode=list:full 
 set statusline+=%f
@@ -66,7 +65,8 @@ set fileencodings=gbk,ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 color elflord
 
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
-nnoremap <silent> <F3> :TlistToggle<CR>
+" nnoremap <silent> <F3> :TlistToggle<CR>
+" set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 
 
 
@@ -85,13 +85,12 @@ set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \
 "######################
 "##### winmanager #####
 "######################
-let g:winManagerWindowLayout='NERDTree'
+let g:winManagerWindowLayout='NERDTree|TagList'
 let g:winManagerWidth = 40
 let g:AutoOpenWinManager = 0
-nmap <silent> <F4> :WMToggle<CR>
-" let g:winManagerWindowLayout='FileExplorer|TagList'
+nmap <silent> <F3> :WMToggle<CR>
 " let g:winManagerWindowLayout='FileExplorer'
-
+" let g:winManagerWindowLayout='FileExplorer|TagList'
 
 
 "######################
@@ -99,10 +98,10 @@ nmap <silent> <F4> :WMToggle<CR>
 "######################
 let g:NERDTree_title="[NERDTree]"  
 function! NERDTree_Start()  
-    exec 'NERDTree'  
+	exec 'NERDTree'  
 endfunction  
 function! NERDTree_IsValid()  
-    return 1  
+	return 1  
 endfunction  
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
@@ -113,19 +112,19 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " wincmd H 替换为 wincmd L
 "
 " function! <SID>ToggleWindowsManager()
-"     if IsWinManagerVisible()
-"         call s:CloseWindowsManager()
-"     else
-"         call s:StartWindowsManager()
-"         以下2行为新增
-"         exe '1wincmd w'
-"         exe 'q'
-"     end
+" 	if IsWinManagerVisible()
+" 		call s:CloseWindowsManager()
+" 	else
+" 		call s:StartWindowsManager()
+" 		以下2行为新增
+" 		exe '1wincmd w'
+" 		exe 'q'
+" 	end
 " endfunction
 " 
 " 以下3行为新增
 " if g:AutoOpenWinManager 
-"     autocmd VimEnter * nested call s:ToggleWindowsManager()|1wincmd w|q
+" 	autocmd VimEnter * nested call s:ToggleWindowsManager()|1wincmd w|q
 " endif
 
 
@@ -147,42 +146,62 @@ let Tlist_Use_Right_Window = 1
 let Tlist_Show_Menu = 1
 let Tlist_Auto_Open = 0
 let Tlist_Sort_Type = "name" 
-let Tlist_Ctags_Cmd = 'F:\soft\ctags.exe'
 let Tlist_WinWidth = 40
+let Tlist_Ctags_Cmd = 'F:\soft\ctags.exe'
 "let Tlist_File_Fold_Auto_Close=1
 
 
 
 "######################
-"###### taglist #######
+"##### auto ctags #####
 "######################
 filetype plugin on
 let g:pydiction_location = 'D:\install\Vim\vimfiles\plugin\complete-dict'
 let g:pydiction_menu_height = 20
 
 function! AutoLoadCTagsAndCScope()
-    let max = 5
-    let dir = './'
-    let i = 0
-    let break = 0
-    while isdirectory(dir) && i < max
-        if filereadable(dir . 'cscope.out') 
-            execute 'cs add ' . dir . 'cscope.out'
-            let break = 1
-        endif
-        if filereadable(dir . 'tags')
-            execute 'set tags =' . dir . 'tags'
-            let break = 1
-        endif
-        if break == 1
-            execute 'lcd ' . dir
-            break
-        endif
-        let dir = dir . '../'
-        let i = i + 1
-    endwhile
+	let max = 5
+	let dir = './'
+	let i = 0
+	let break = 0
+	while isdirectory(dir) && i < max
+		if filereadable(dir . 'cscope.out') 
+			execute 'cs add ' . dir . 'cscope.out'
+			let break = 1
+		endif
+		if filereadable(dir . 'tags')
+			execute 'set tags =' . dir . 'tags'
+			let break = 1
+		endif
+		if break == 1
+			execute 'lcd ' . dir
+			break
+		endif
+		let dir = dir . '../'
+		let i = i + 1
+	endwhile
 endf
 nmap <F7> :call AutoLoadCTagsAndCScope()<CR>
+
+
+
+"######################
+"####### cscope #######
+"######################
+function Do_CsTag()
+    if(executable("cscope") && has("cscope") )
+		if(has('win32'))
+			silent! execute "!dir /b/s/a *.c,*.cpp,*.h,*.java,*.cs,*.py >> cscope.files"
+		else
+			silent! execute "!find . -name "*.h" -o -name "*.c" -o -name "*.cpp" -o -name "*.m" -o -name "*.mm" -o -name "*.java" -o -name "*.py" > cscope.files"
+		endif
+		silent! execute "!cscope -b"
+		if filereadable("cscope.out")
+			execute "cs add cscope.out"
+		endif
+    endif
+endf
+nmap <F4> :call Do_CsTag()<CR>
 
 
 
@@ -210,12 +229,12 @@ nmap <F7> :call AutoLoadCTagsAndCScope()<CR>
 " set fenc=gbk
 " set fileencodings=gbk,ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 " if(g:iswindows==1)
-"     source $VIMRUNTIME/delmenu.vim
-"     source $VIMRUNTIME/menu.vim
-"     language messages zh_CN.utf-8
+"	 source $VIMRUNTIME/delmenu.vim
+"	 source $VIMRUNTIME/menu.vim
+"	 language messages zh_CN.utf-8
 " endif
 " if v:lang =~? '^\(zh\)\|\(ja\)\|\(ko\)'
-"     set ambiwidth=double
+"	 set ambiwidth=double
 " endif
 " set nobomb
 

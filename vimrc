@@ -30,11 +30,11 @@ endfunction
 
 
 "############################################################
-"################ ä»¥ ä¸‹ å†… å®¹ ä¸º è‡ª å®š ä¹‰ ###################
+"################ ÒÔ ÏÂ ÄÚ Èİ Îª ×Ô ¶¨ Òå ###################
 "############################################################
 
 "######################
-"##### ç›¸ å…³ è®¾ ç½® ####
+"##### Ïà ¹Ø Éè ÖÃ ####
 "######################
 set si
 set ai
@@ -42,10 +42,10 @@ set number
 set modeline
 set ignorecase
 set showmatch
-set autoread
 set wildmenu 
 set smarttab
 set autochdir
+set autoread
 set noexpandtab
 set background=dark
 set tabstop=4  
@@ -62,16 +62,28 @@ set encoding=gbk
 set fenc=gbk
 set fileencodings=gbk,ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 
-color elflord
-
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 " nnoremap <silent> <F3> :TlistToggle<CR>
 " set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+" set foldmethod=indent
 
 
 
 "######################
-"#####  çŠ¶ æ€ æ  ######
+"####### Åä É« ########
+"######################
+syntax on
+colorscheme molokai
+let g:molokai_original = 1
+let g:rehash256 = 1
+" color elflord
+" color Tomorrow-Night
+" :e!
+
+
+
+"######################
+"#####  ×´ Ì¬ À¸ ######
 "######################
 highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
 function! CurDir()
@@ -105,24 +117,24 @@ function! NERDTree_IsValid()
 endfunction  
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-" è®¾ç½®NERDTreeæ›¿æ¢winmanager
-" ä¿®æ”¹winmanager.vim
+" ÉèÖÃNERDTreeÌæ»»winmanager
+" ĞŞ¸Äwinmanager.vim
 " toggle showing the explorer plugins.
 "
-" wincmd H æ›¿æ¢ä¸º wincmd L
+" wincmd H Ìæ»»Îª wincmd L
 "
 " function! <SID>ToggleWindowsManager()
 " 	if IsWinManagerVisible()
 " 		call s:CloseWindowsManager()
 " 	else
 " 		call s:StartWindowsManager()
-" 		ä»¥ä¸‹2è¡Œä¸ºæ–°å¢
+" 		ÒÔÏÂ2ĞĞÎªĞÂÔö
 " 		exe '1wincmd w'
 " 		exe 'q'
 " 	end
 " endfunction
 " 
-" ä»¥ä¸‹3è¡Œä¸ºæ–°å¢
+" ÒÔÏÂ3ĞĞÎªĞÂÔö
 " if g:AutoOpenWinManager 
 " 	autocmd VimEnter * nested call s:ToggleWindowsManager()|1wincmd w|q
 " endif
@@ -130,7 +142,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 
 "######################
-"###### ç´¢ å¼• çº¿ ######
+"###### Ë÷ Òı Ïß ######
 "######################
 let g:indentLine_color_gui = '#A4E57E'
 let g:indentLine_char = '|'
@@ -191,7 +203,7 @@ nmap <F7> :call AutoLoadCTagsAndCScope()<CR>
 function Do_CsTag()
     if(executable("cscope") && has("cscope") )
 		if(has('win32'))
-			silent! execute "!dir /b/s/a *.c,*.cpp,*.h,*.java,*.cs,*.py >> cscope.files"
+			silent! execute "!dir /b/s/a *.c,*.cpp,*.h,*.java,*.cs,*.py > cscope.files"
 		else
 			silent! execute "!find . -name "*.h" -o -name "*.c" -o -name "*.cpp" -o -name "*.m" -o -name "*.mm" -o -name "*.java" -o -name "*.py" > cscope.files"
 		endif
@@ -211,18 +223,17 @@ nmap <F4> :call Do_CsTag()<CR>
 " nmap <F9> <Esc>:!ctags -R *<CR>
 
 " set encoding=utf-8
-" è®¾ç½®gvimçš„å­—ä½“å’Œå¤§å°ï¼Œä»¥åŠé…è‰²æ–¹æ¡ˆ
-" å­—ä½“è®¾ç½®å’ŒLinuxç¨å¾®æœ‰ç‚¹åŒºåˆ«ï¼Œè¯·ä½¿ç”¨å†’å·éš”å¼€ï¼Œæˆ–è€…ä½¿ç”¨åŒå¼•å·æ‹¬èµ·æ¥ï¼Œè€Œä¸æ˜¯Linuxä¸‹çš„ç©ºæ ¼è½¬ä¹‰
+" ÉèÖÃgvimµÄ×ÖÌåºÍ´óĞ¡£¬ÒÔ¼°ÅäÉ«·½°¸
+" ×ÖÌåÉèÖÃºÍLinuxÉÔÎ¢ÓĞµãÇø±ğ£¬ÇëÊ¹ÓÃÃ°ºÅ¸ô¿ª£¬»òÕßÊ¹ÓÃË«ÒıºÅÀ¨ÆğÀ´£¬¶ø²»ÊÇLinuxÏÂµÄ¿Õ¸ñ×ªÒå
 " set guifont=Courier_New:h10:cANSI
 " colorscheme freya   
 " colorscheme lucius   
 " colorscheme blackdust   
 " colorscheme rainbow_neon
-" ä¸ºå…‰æ ‡æ‰€åœ¨è¡Œæ·»åŠ æ ‡è¯†(Windowsä¸‹ä¸ºé«˜äº®æ¨¡å¼ï¼ŒLinuxä¸‹ä¸ºä¸‹åˆ’çº¿)
-" setlocal cursorlin
+" Îª¹â±êËùÔÚĞĞÌí¼Ó±êÊ¶(WindowsÏÂÎª¸ßÁÁÄ£Ê½£¬LinuxÏÂÎªÏÂ»®Ïß)
  
 " set cursorcolumn
-" æ‹·è´è¿‡æ¥çš„ä»£ç å¯¹é½
+" ¿½±´¹ıÀ´µÄ´úÂë¶ÔÆë
 " gg=G (command mode)
 
 " set encoding=utf-8

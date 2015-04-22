@@ -1,0 +1,94 @@
+1. set
+some_list = [1, 2, 3, 4, 5, 2, 5, 1, 4, 8]
+even_set = {x for x in some_list if x % 2 == 0}
+
+2. dict
+d = {x: x % 2 == 0 for x in range(1, 11)}
+
+3. set string face
+my_set = {1, 2, 1, 2, 3, 4}
+
+4. iterator
+num = [1, 4, -5, 10, -7, 2, 3, -1]
+filtered_squared = [x ** 2 for x in num if x > 0]
+
+5. generator (not need to load all data)
+num = [1, 4, -5, 10, -7, 2, 3, -1]
+filtered_and_squared = (x ** 2 for x in num if x > 0)
+for i in filetered_and_squared:
+	print i
+
+6. modify generator
+num = [1, 4, -5, 10, -7, 2, 3, -1]
+def square_generator(optional_parameter):
+	return (x ** 2 for x in num if x > optional_parameter)
+print square_generator(0)
+for k in square_generator(0);
+	print k
+g = list(square_generator(0))
+print g
+
+7. zip
+alist = ['a1', 'a2', 'a3']
+blist = ['1', '2', '3']
+for a, b in zip(alist, blist):
+	print a, b
+
+8. two list
+import os
+def tree(top):
+	for path, names, fnames in os.walk(top):
+		for fname in fnames:
+			yield os.path.join(path, fname)
+ 
+for name in tree('C:\Users\XXX\Downloads\Test'):
+	print name
+
+9. decorators
+def hello(fn):
+	def wrapper(n):
+		while n > 0:
+			print "count"
+			n -= 1
+	return wrapper
+
+@hello
+def foo(n):
+	pass
+
+foo(10)
+
+@hello
+def foo():
+foo = hello(foo)
+
+@dec_one
+@dec_two
+def func()
+func = dec_one(dec_two(func))
+
+@dec(arg1, arg2)
+def func()
+func = dec(arg1, arg2)(func)
+
+
+
+
+
+u, v, w = w, v, u
+
+d = {'key': 'value'}
+print d.get('key', 'not find')
+
+text = string.join([ line for line in open('text.txt')], '')
+text = ''.join([ line for line in open('text.txt') ]) 
+text = file('text.txt').read()
+
+print (n >= 0) and 'positive' or 'negitive'
+print(n >= 0 and ['pos'] or ['neg'])[0]
+print ('negitive', 'positive')[n >= 0]
+
+d.setdefault(y, {})[x] = 3
+d.setdefault(y, [])[x] = 3
+
+map(lambda x : x + 1, [1, 2, 3])

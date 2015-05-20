@@ -237,11 +237,14 @@ endif
 "######################
 "##### 多文件查找 #####
 "######################
-function Search_Word()
-	let w = expand("<cword>") "
-	execute "vimgrep " . w . " **"
-endf
-nmap <C-s> :call Search_Word()<cr>:copen<cr>
+" function Search_Word()
+" 	let w = expand("<cword>") "
+" 	execute "vimgrep " . w . " **"
+" endf
+" nmap <C-s> :call Search_Word()<cr>:copen<cr>
+ 
+" need to install gnuwin32 grep
+nmap <C-s> :execute " grep -srn " . expand("<cword>") . " **" <CR>:copen 30<CR>
 
 
 
@@ -267,7 +270,9 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tomasr/molokai'
 Bundle 'davidhalter/jedi-vim'
+Bundle 'mileszs/ack.vim'
 Bundle 'taglist.vim'
+Bundle 'grep.vim'
 Bundle 'winmanager'
 
 
@@ -285,7 +290,7 @@ let g:ycm_cache_omnifunc=0
 let g:ycm_seed_identifiers_with_syntax=1  
 let g:ycm_complete_in_strings = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1 
-let g:ycm_key_invoke_completion = '<M-;>'  
+let g:ycm_key_invoke_completion = '<C-;>'  
 
 
 

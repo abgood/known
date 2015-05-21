@@ -61,6 +61,7 @@ set shiftwidth=4
 " set cursorcolumn
 set encoding=gbk
 set shortmess=atI
+set updatetime=500
 set statusline+=%f
 set background=dark
 set list lcs=tab:\|\ 
@@ -70,7 +71,7 @@ set gcr=a:block-blinkon0
 set guifont=Lucida_Console:h10:cANSI   
 au BufWinEnter * let w:m2=matchadd('Underlined', '\%>' . 150 . 'v.\+', -1)
 set fileencodings=gbk,ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
-execute 'cd E:\taole\freshblood\config\'
+execute 'cd E:\code\freshblood\config\'
 
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 " map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
@@ -228,7 +229,7 @@ endf
 nmap <F4> :call Do_CsTag()<CR>
 
 if  has("cscope")
-	cs add E:\taole\freshblood\cscope.out
+	cs add E:\code\freshblood\cscope.out
 endif
 
 
@@ -265,35 +266,46 @@ filetype off
 set rtp+=$VIM/vimfiles/bundle/vundle/
 call vundle#rc('$VIM/vimfiles/bundle/')
 
-Bundle 'gmarik/vundle'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tomasr/molokai'
-Bundle 'davidhalter/jedi-vim'
-Bundle 'mileszs/ack.vim'
-Bundle 'taglist.vim'
-Bundle 'grep.vim'
-Bundle 'winmanager'
+Plugin 'gmarik/vundle'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tomasr/molokai'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'taglist.vim'
+Plugin 'grep.vim'
+Plugin 'winmanager'
+Plugin 'Mark'
 
 
 
 "######################
 "#######  ycmd  #######
 "######################
-nmap <M-g> :YcmCompleter GoToDefinitionElseDeclaration <C-R>=expand("<cword>")<CR><CR> 
+nmap <M-g> :YcmCompleter GoToDefinitionElseDeclaration <C-R>=expand("<cword>")<CR><CR>
 inoremap <expr> <CR>   pumvisible() ? "\<C-y>" : "\<CR>"
-let g:ycm_complete_in_comments=1  
+let g:ycm_complete_in_comments=1
 let g:ycm_confirm_extra_conf=0
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_min_num_of_chars_for_completion=1
-let g:ycm_cache_omnifunc=0  
-let g:ycm_seed_identifiers_with_syntax=1  
+let g:ycm_cache_omnifunc=0
+let g:ycm_seed_identifiers_with_syntax=1
 let g:ycm_complete_in_strings = 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 1 
-let g:ycm_key_invoke_completion = '<C-;>'  
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_key_invoke_completion = '<M-;>'
+let g:ycm_error_symbol='>>'
+let g:ycm_warning_symbol='>*'
 
 
 
 "######################
 "#######  jedi  #######
 "######################
+
+
+
+"######################
+"#######  Mark  #######
+"######################
+let mapleader = ","
+let g:mwDefaultHighlightingPalette = 'extended'

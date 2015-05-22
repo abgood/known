@@ -11,3 +11,5 @@ git push -u origin master
 2. 添加密钥到ssh: ssh-add id_rsa 需要之前输入密码
 3. 在github上添加ssh密钥，这要添加的是"id_rsa.pub"里面的公钥
 4. ssh -T git@github.com 测试成功
+
+git update-index --assume-unchanged PATH    在PATH处输入要忽略的文件,忽略已经提交过的文件。

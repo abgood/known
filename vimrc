@@ -67,7 +67,8 @@ set background=dark
 set list lcs=tab:\|\ 
 set pastetoggle=<F10>
 set wildmode=list:full 
-set gcr=a:block-blinkon0
+au GUIEnter * simalt ~x
+" set gcr=a:block-blinkon0
 set guifont=Lucida_Console:h10:cANSI   
 au BufWinEnter * let w:m2=matchadd('Underlined', '\%>' . 150 . 'v.\+', -1)
 set fileencodings=gbk,ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
@@ -174,6 +175,14 @@ let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_Right_Window = 1
 let Tlist_Ctags_Cmd = 'F:\soft\ctags.exe'
 " let Tlist_File_Fold_Auto_Close=1
+" 
+" 解决function <SNR>19_Tlist_Refresh_Folds 时发生错误
+" 在function! s:Tlist_Refresh_Folds() 和  let winnum = bufwinnr(g:TagList_title) 之间
+" talist.vim添加以下3行
+"	if g:Tlist_Show_One_File
+"		return
+"	endif
+
 
 
 
@@ -267,11 +276,13 @@ set rtp+=$VIM/vimfiles/bundle/vundle/
 call vundle#rc('$VIM/vimfiles/bundle/')
 
 Plugin 'gmarik/vundle'
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tomasr/molokai'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'mileszs/ack.vim'
+Plugin 'jiangmiao/auto-pairs'
+" Plugin 'dyng/ctrlsf.vim'
 Plugin 'taglist.vim'
 Plugin 'grep.vim'
 Plugin 'winmanager'
@@ -282,19 +293,20 @@ Plugin 'Mark'
 "######################
 "#######  ycmd  #######
 "######################
-nmap <M-g> :YcmCompleter GoToDefinitionElseDeclaration <C-R>=expand("<cword>")<CR><CR>
-inoremap <expr> <CR>   pumvisible() ? "\<C-y>" : "\<CR>"
-let g:ycm_complete_in_comments=1
-let g:ycm_confirm_extra_conf=0
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_min_num_of_chars_for_completion=1
-let g:ycm_cache_omnifunc=0
-let g:ycm_seed_identifiers_with_syntax=1
-let g:ycm_complete_in_strings = 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_key_invoke_completion = '<M-;>'
-let g:ycm_error_symbol='>>'
-let g:ycm_warning_symbol='>*'
+" 由于中文下补全有异常, 暂时注释掉
+" nmap <M-g> :YcmCompleter GoToDefinitionElseDeclaration <C-R>=expand("<cword>")<CR><CR>
+" inoremap <expr> <CR>   pumvisible() ? "\<C-y>" : "\<CR>"
+" let g:ycm_cache_omnifunc=0
+" let g:ycm_confirm_extra_conf=0
+" let g:ycm_complete_in_comments=1
+" let g:ycm_complete_in_strings = 1
+" let g:ycm_seed_identifiers_with_syntax=1
+" let g:ycm_key_invoke_completion = '<M-;>'
+" let g:ycm_min_num_of_chars_for_completion=1
+" let g:ycm_collect_identifiers_from_tags_files = 1
+" let g:ycm_collect_identifiers_from_comments_and_strings = 1
+" let g:ycm_error_symbol='>>'
+" let g:ycm_warning_symbol='>*'
 
 
 
@@ -309,3 +321,14 @@ let g:ycm_warning_symbol='>*'
 "######################
 let mapleader = ","
 let g:mwDefaultHighlightingPalette = 'extended'
+
+
+
+"######################
+"##### 隐藏菜单栏 #####
+"######################
+set guioptions-=m
+set guioptions-=T
+set guioptions-=r
+set guioptions-=L
+set cmdheight=2

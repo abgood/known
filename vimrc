@@ -72,7 +72,7 @@ au GUIEnter * simalt ~x
 set guifont=Lucida_Console:h10:cANSI   
 au BufWinEnter * let w:m2=matchadd('Underlined', '\%>' . 150 . 'v.\+', -1)
 set fileencodings=gbk,ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
-execute 'cd E:\code\freshblood\config\'
+execute 'cd E:\code\freshblood\config\module'
 
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 " map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
@@ -114,6 +114,7 @@ set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \
 let g:winManagerWindowLayout='NERDTree|TagList'
 let g:winManagerWidth = 40
 let g:AutoOpenWinManager = 0
+au VimEnter * :WMToggle
 nmap <silent> <F3> :WMToggle<CR>
 " let g:winManagerWindowLayout='FileExplorer'
 " let g:winManagerWindowLayout='FileExplorer|TagList'
